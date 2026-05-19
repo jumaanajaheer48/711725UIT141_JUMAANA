@@ -1,97 +1,160 @@
-# Transaction Processing System  
-### Mini Project – 24UCS271 Lab
+# Transaction Processing System
 
----
+## Project Description
 
-## Objective
-This mini project focuses on understanding, modifying, and extending a **Transaction Processing System** program. Students are expected to analyze existing code, improve it, and add new functionalities while following good coding practices.
+This project is a C-based bank account transaction processing system. It uses a random-access binary file, `credit.dat`, to store account records and allows the user to create, update, delete, search, list, and analyze account information.
 
----
+The project is based on file handling concepts in C, especially binary files, structures, random access using `fseek`, and record-based data storage.
 
-## Reference Code
-Review the given source code before starting the project:
+## Account Structure
 
-🔗 https://replit.com/@ashokb/Unit5Programs#trans.c
+Each account record stores:
 
----
+- Account number
+- Last name
+- First name
+- Account balance
 
-## Tasks to be Performed
+```c
+struct clientData
+{
+    unsigned int acctNum;
+    char lastName[15];
+    char firstName[10];
+    double balance;
+};
+```
 
-1. Compile and run the given executable code.
-2. Perform your own testing of the program.
-3. Add a new account detail and regenerate the `accounts.txt` file.
-   - Inspect the contents of the file.
-   - Verify whether the output matches your expectations.
-4. Identify and fix any logical errors in the program.
-5. Add new functionality  
-   - Example: Listing all account information.
-6. Optimize the program for better performance and efficiency.
+## Features
 
----
+The program includes the following features:
 
-## Evaluation Criteria
+1. Generate a formatted text file called `accounts.txt`
+2. Update an account balance
+3. Add a new account
+4. Delete an account
+5. List all active accounts
+6. Search account by first name or last name
+7. Count total active accounts
+8. Sort accounts by balance
+9. Initialize or regenerate the account database
+10. Display the account with the highest balance
+11. Generate a low balance report
+12. Prevent negative opening balance
+13. Confirm before deleting an account
+14. Maintain transaction history in `transactions.txt`
 
-### 1. General (25 Points)
-| Activity | Points | Remarks |
-|--------|--------|--------|
-| Self-effort | 5 | Student’s own assessment of hours spent (no copying or external references) |
-| Turnaround Time | 10 | Provide three time slots; earlier demo gets more points |
-| Project Demo | 10 | Demo must be done using repl.it |
+## Files Used
 
----
+| File | Purpose |
+|---|---|
+| `trans.c` | Main C source code |
+| `credit.dat` | Binary file used to store account records |
+| `accounts.txt` | Generated text report of account records |
+| `transactions.txt` | Transaction history log |
+| `README.md` | Project documentation |
 
-### 2. Comprehension (15 Points)
-| Activity | Points |
-|--------|--------|
-| Domain Knowledge | 5 |
-| Added Functionality (Ideas) | 5 |
-| Code Comprehension | 5 |
+## How to Run in VS Code
 
----
+Open this folder in VS Code:
 
-### 3. Modification (35 Points)
-| Activity | Points |
-|--------|--------|
-| Code Improvement | 5 |
-| Functional Decomposition | 10 |
-| Refactoring for Memory Usage | 10 |
-| Refactoring for Speed | 10 |
+```text
+C:\Users\KiTE\Desktop\711725UIT141_JUMAANA
+```
 
----
+Open the terminal:
 
-### 4. Innovation (45 Points)
-| Activity | Points |
-|--------|--------|
-| New Features / User Stories (Faculty specified) | 5 |
-| Requirement to Code Translation | 10 |
-| Added Functionality (Simple – Error Handling) | 10 |
-| Added Functionality (Advanced) | 20 |
+```text
+Terminal -> New Terminal
+```
 
----
+Compile the program:
 
-## Total Marks
-**120 Marks**  
-➡ Reduced to **20 Marks** for final evaluation
+```powershell
+gcc -Wall -Wextra -Wconversion -std=c11 trans.c -o trans.exe
+```
 
----
+Run the program:
 
-## Rules for Mini Project Implementation
+```powershell
+.\trans.exe
+```
 
-- Maximum of **2 attempts** will be given for project presentation.
-- If dissatisfied with the first score, a second attempt is allowed.
-- The **best score** out of the two attempts will be considered final.
-- Discussion and clarification among students are allowed.
-- **Copying or borrowing code is strictly prohibited.**
-- Violation of plagiarism rules will result in a **zero (0 / NULL) score**.
+## Menu Options
 
----
+```text
+1  - Create accounts.txt file
+2  - Update an account
+3  - Add a new account
+4  - Delete an account
+5  - List all accounts
+6  - Search account by name
+7  - Count active accounts
+8  - Sort accounts by balance
+9  - Initialize account database
+10 - Show highest balance account
+11 - Low balance report
+14 - Exit program
+```
 
-## Additional Reference
-🔗 http://j.mp/transactionUnit5  
-🔗 https://htmlpreview.github.io/?https://github.com/kgisl/makesite/blob/master/content/blog/2021-06-23-unit5-mini-project.md.html
-🔗 https://github.com/24UCS271-MiniProject/miniProjectSourceCode/
+## Sample Testing
 
----
+### List Accounts
 
-**Date:** 31/01/2026  
-**Time:** 06:42
+```text
+Enter your choice: 5
+```
+
+### Add Account
+
+```text
+Enter your choice: 3
+Enter new account number: 2
+Enter lastname, firstname, balance:
+Kumar Ravi 5000
+```
+
+### Search by Name
+
+```text
+Enter your choice: 6
+Enter first or last name to search: Ravi
+```
+
+### Count Accounts
+
+```text
+Enter your choice: 7
+```
+
+### Low Balance Report
+
+```text
+Enter your choice: 11
+Enter low balance limit: 1000
+```
+
+### Exit
+
+```text
+Enter your choice: 14
+```
+
+## Important Note
+
+Option `9` initializes `credit.dat` with 100 blank records. This will erase existing account data, so it should be used only when a fresh database is required.
+
+## Error Handling Added
+
+The program handles:
+
+- Invalid account numbers
+- Invalid menu input
+- Negative opening balance
+- Failed file reads and writes
+- Delete confirmation
+- Corrupted or invalid account records
+
+## Conclusion
+
+This project demonstrates the use of C structures, binary files, random-access file handling, input validation, and transaction reporting. The added features improve usability, reliability, and project presentation quality.
